@@ -11,15 +11,85 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.jackson.core>2.6.3</version.jackson.core>
+		<slf4j.version>1.7.5</slf4j.version>
+		<io.protostuff.version>1.4.4</io.protostuff.version>
+		<org.objenesis.version>2.4</org.objenesis.version>
+		<io.netty.version>4.1.6.Final</io.netty.version>
+	</properties>
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>${io.netty.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${version.jackson.core}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${version.jackson.core}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+		<!-- Protostuff -->
+		<dependency>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-core</artifactId>
+			<version>${io.protostuff.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-api</artifactId>
+			<version>${io.protostuff.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-runtime</artifactId>
+			<version>${io.protostuff.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-collectionschema</artifactId>
+			<version>${io.protostuff.version}</version>
+		</dependency>
+		<!-- Objenesis -->
+		<dependency>
+			<groupId>org.objenesis</groupId>
+			<artifactId>objenesis</artifactId>
+			<version>${org.objenesis.version}</version>
+		</dependency>
+	</dependencies>
+	 <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
