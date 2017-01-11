@@ -3,6 +3,7 @@ package com.baojie.channelmanager.client.channelgroup;
 
 
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -15,10 +16,12 @@ public class YunChannelGroup {
 	private static final Logger log = LoggerFactory.getLogger(YunChannelGroup.class);
 
 	private final int channelNum;
-//test commit git
+    //这组channel是否可用的标志
 	private final AtomicBoolean isActive = new AtomicBoolean(true);
 
-	private final ReentrantReadWriteLock readWriteLock;
+	
+	//只有获取到了这个信号量的线程才能够操作channelgroup里面重连
+	private final Semaphore semForChannelGroup=new Semaphore(1);
 
 	private volatile int concurrentWriteFlag;
 

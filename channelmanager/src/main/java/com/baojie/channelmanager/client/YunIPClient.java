@@ -35,9 +35,9 @@ import com.baojie.channelmanager.message.MessageResponse;
 import com.baojie.channelmanager.util.UnitedCloudFutureReturnObject;
 import com.baojie.channelmanager.util.YunThreadFactory;
 
-public class HeartBeatsClient {
+public class YunIPClient {
 
-	private static final Logger log = LoggerFactory.getLogger(HeartBeatsClient.class);
+	private static final Logger log = LoggerFactory.getLogger(YunIPClient.class);
 
 	private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
@@ -58,7 +58,7 @@ public class HeartBeatsClient {
 
 	private volatile Bootstrap boot;
 
-	private HeartBeatsClient(final int howManyChannel) {
+	private YunIPClient(final int howManyChannel) {
 		this.howManyChannel = howManyChannel;
 		this.yunChannelGroup = YunChannelGroup.create(howManyChannel, readWriteLock);
 		// scheduledStart();
@@ -68,8 +68,8 @@ public class HeartBeatsClient {
 		scheduledThreadPoolExecutor.scheduleWithFixedDelay(listMonitor, 6, 15, TimeUnit.SECONDS);
 	}
 
-	public static HeartBeatsClient create(final int howManyChannel) {
-		return new HeartBeatsClient(howManyChannel);
+	public static YunIPClient create(final int howManyChannel) {
+		return new YunIPClient(howManyChannel);
 	}
 
 	public void connect(int port, String host) {
@@ -187,7 +187,7 @@ public class HeartBeatsClient {
 			} catch (NumberFormatException e) {
 			}
 		}
-		HeartBeatsClient heartBeatsClient = new HeartBeatsClient(32);
+		YunIPClient heartBeatsClient = new YunIPClient(32);
 		try {
 			heartBeatsClient.connect(port, "192.168.12.74");
 		} catch (Exception e) {
